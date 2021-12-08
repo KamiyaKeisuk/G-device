@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       resources :reviews, only: [:destroy]
     end
     resources :categories, except: [:new, :show, :destroy]
-    resources :maker, except: [:new, :show, :destroy]
+    resources :makers, except: [:new, :show, :destroy]
     resources :contacts, only: [:show]
 
     get "/device_search", to: "admin/searches#device_search"
