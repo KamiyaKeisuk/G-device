@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     sessions: 'customer/sessions'
   }
 
-  scope modul: :customer do
+  scope module: :customer do
     root to: "homes#top"
     get "/about", to: "homes#about"
     resources :contacts, only: [:new, :create] do
