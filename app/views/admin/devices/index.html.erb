@@ -1,0 +1,37 @@
+<main class="mb-auto mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col m-3">
+        <h3>デバイス一覧</h3>
+      </div>
+      <div class="col-auto ml-auto">
+        <%= link_to "デバイス新規登録", new_admin_device_path, class: "btn btn-success motion"%>
+      </div>
+      <table class="table table-inverse">
+        <thead class="table-color">
+          <tr>
+            <th scope="col">デバイスID</th>
+            <th scope="col">デバイス名</th>
+            <th scope="col">参考価格</th>
+            <th scope="col">カテゴリー</th>
+            <th scope="col">メーカー</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @devices.each do |device| %>
+            <tr>
+              <td><%= device.id %></td>
+              <td><%= link_to device.name, admin_device_path(device), class: "link" %></td>
+              <td><%= device.price.to_s(:delimited) %>円</td>
+              <td><%= device.category.name %></td>
+              <td><%= device.maker.name %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<div class="mx-auto" style="width: 200px;">
+  <%= paginate @devices %>
+</div>

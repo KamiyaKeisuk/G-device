@@ -1,0 +1,46 @@
+<main class="mb-auto mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col m-3">
+        <h3>デバイス新規登録</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="mx-auto">
+        <p class="font-weight-bold text-danger">※全ての項目が入力必須です</p>
+        <%= form_with model: @device, url: admin_devices_path, local: true do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <th>デバイス画像</th>
+            <td><%= f.attachment_field :image %></td>
+          </tr>
+          <tr>
+            <th>デバイス名</th>
+            <td><%= f.text_field :name, placeholder: "デバイス名" %></td>
+          </tr>
+          <tr>
+            <th>デバイス説明</th>
+            <td><%= f.text_area :description, placeholder: "ここに説明文を記述します", size: "60x10" %></td>
+          </tr>
+          <tr>
+            <th>カテゴリー</th>
+            <td><%= f.collection_select :category_id, @categories, :id, :name, { prompt: "選択してください" } %></td>
+          </tr>
+          <tr>
+            <th>メーカー</th>
+            <td><%= f.collection_select :maker_id, @makers, :id, :name, { prompt: "選択してください" } %></td>
+          </tr>
+          <tr>
+            <th>参考価格</th>
+            <td><%= f.text_field :price, placeholder: "1000" %>円</td>
+          </tr>
+          <tr>
+            <th></th>
+            <td><%= f.submit "新規登録", class: "btn btn-success motion" %></td>
+          </tr>
+        </table>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</main>

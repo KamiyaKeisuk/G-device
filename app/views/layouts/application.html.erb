@@ -10,6 +10,37 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
+        <div class="container">
+          <a class="navbar-brand" href="/admin"><%= image_tag("G-device_logo.png", size: '60x60') %></a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <% if customer_signed_in? %>
+                <li class="nav-item pt-2 text-white">ようこそ、<%= current_customer.last_name %>さん！</li>
+                <li class="nav-item ml-4"><%= link_to "My page",customers_mypage_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Items",items_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Cart",cart_items_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Log out",destroy_customer_session_path,method: :delete,class:"nav-link text-white" %></li>
+              <% elsif admin_signed_in? %>
+                <li class="nav-item ml-4"><%= link_to "Devices",admin_devices_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Category",admin_categories_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Makers",admin_makers_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Customers",admin_customers_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Log out",destroy_admin_session_path,method: :delete,class:"nav-link text-white" %></li>
+              <% else %>
+                <li class="nav-item ml-4"><%= link_to "About",about_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Items",items_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Sign up",new_customer_registration_path,class:"nav-link text-white" %></li>
+                <li class="nav-item ml-4"><%= link_to "Log in",new_customer_session_path,class:"nav-link text-white" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>
