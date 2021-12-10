@@ -19,8 +19,32 @@
               <% if customer_signed_in? %>
                 <li class="nav-item ml-4"><%= link_to "My page",customers_mypage_path,class:"nav-link text-white" %></li>
                 <li class="nav-item ml-4"><%= link_to "Devices",devices_path,class:"nav-link text-white" %></li>
-                <li class="nav-item ml-4"><%= link_to "Category",category_search_path,class:"nav-link text-white" %></li>
-                <li class="nav-item ml-4"><%= link_to "Makers",maker_search_path,class:"nav-link text-white" %></li>
+                <%# マウスホバーでカテゴリーの一覧が表示され、カテゴリーを選択すると対象のデバイスのみが表示される%>
+                <li class="nav-item ml-4 dropdown active">
+                  <a href="#" class="dropdown-toggle nav-link text-white">Category <span class="caret"></span></a>
+                  <ul class="dropdown-menu mt-0">
+                    <% Category.all.each do |category| %>
+                      <li>
+                        <a href="#">
+                          <%= link_to category.name, devices_path(category_id: category.id), class: "text-dark" %>
+                        </a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+                <%# マウスホバーでメーカーの一覧が表示され、メーカーを選択すると対象のデバイスのみが表示される%>
+                <li class="nav-item ml-4 dropdown active">
+                  <a href="#" class="dropdown-toggle nav-link text-white">Maker <span class="caret"></span></a>
+                  <ul class="dropdown-menu mt-0">
+                    <% Maker.all.each do |maker| %>
+                      <li>
+                        <a href="#">
+                          <%= link_to maker.name, devices_path(maker_id: maker.id), class: "text-dark" %>
+                        </a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
                 <li class="nav-item ml-4"><%= link_to "Log out",destroy_customer_session_path,method: :delete,class:"nav-link text-white" %></li>
               <% elsif admin_signed_in? %>
                 <li class="nav-item ml-4"><%= link_to "Devices",admin_devices_path,class:"nav-link text-white" %></li>

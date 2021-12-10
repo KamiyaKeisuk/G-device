@@ -50,8 +50,6 @@ Rails.application.routes.draw do
     put "/customers/withdraw", to: "customers#withdraw"
 
     get "/device_search", to: "searches#device_search"
-    get "/category_search", to: "searches#category_search"
-    get "/maker_search", to: "searches#maker_search"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
