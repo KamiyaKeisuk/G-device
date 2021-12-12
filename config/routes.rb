@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     resources :customers, except: [:new, :create, :destroy]
-    resources :devices, exept: [:destroy] do
-      resources :reviews, only: [:destroy]
+    resources :devices, except: [:destroy] do
+      resources :reviews, only: [:show, :destroy]
     end
     resources :categories, except: [:new, :show, :destroy]
     resources :makers, except: [:new, :show, :destroy]
@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       end
     end
     resources :devices, only: [:index, :show] do
-      resources :reviews, except: [:index, :show] do
+      resources :reviews, except: [:index] do
         resources :review_likes, only: [:create, :destroy]
         resources :review_comments, only: [:create, :destroy]
       end

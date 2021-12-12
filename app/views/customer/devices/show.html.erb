@@ -5,7 +5,7 @@
       <div class="ml-5 mt-3">
         <h3><strong><%= @device.name %></strong></h3>
         <div class="mt-3 text-wrap" style="width: 30rem;">
-          <%= @device.description%><br>
+          <%= @device.description %><br>
         </div>
         <div class="mt-3">
           <h4>参考価格: ￥<%= @device.price.to_s(:delimited) %></h4>
@@ -43,35 +43,30 @@
       <table class="ml-5 table table-inverse" style="width: 50rem;">
         <thead class="table-color">
           <tr>
-            <th scope="col">ユーザー名</th>
             <th scope="col">タイトル</th>
-            <th scope="col">レビュー</th>
             <th scope="col">評価</th>
+            <th scope="col">いいね</th>
+            <th scope="col">投稿日時</th>
           </tr>
         </thead>
         <tbody>
           <% @device.reviews.each do |review| %>
             <tr>
-              <td><%= review.customer.name %></td>
-              <td><%= review.title %></td>
-              <td><%= review.comment %></td>
+              <td><%= link_to review.title, device_review_path(review.device.id, review.id), class: "link" %></td>
               <td>
                 <div id="star-rate-<%= review.id %>"></div>
                 <script>
                   $('#star-rate-<%= review.id %>').empty()
                   $('#star-rate-<%= review.id %>').raty({
-                    size: 36,
+                    readOnly: true,
                     starOff:  '<%= asset_path('star-off.png') %>',
                     starOn : '<%= asset_path('star-on.png') %>',
-                    starHalf: '<%= asset_path('star-half.png') %>',
-                    half: true,
-                    readOnly: true,
                     score: <%= review.rate %>,
                   });
                 </script>
-              <td>
-                <%= link_to "編集する", edit_device_review_path(review.device.id, review.id), class: "btn btn-success motion" %>
               </td>
+              <td></td>
+              <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
             </tr>
           <% end %>
         </tbody>

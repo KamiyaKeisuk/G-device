@@ -17,6 +17,5 @@ class Customer::DevicesController < ApplicationController
 
   def show
     @device = Device.find(params[:id])
-    @reviews = @device.reviews
   end
 end

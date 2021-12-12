@@ -8,7 +8,7 @@
     <div class="row">
       <div class="mx-auto">
         <p class="font-weight-bold text-danger">※参考画像以外の項目が入力必須です</p>
-        <%= form_with model: @review, url: device_review_path(@review), local: true do |f| %>
+        <%= form_with model: @review, url: device_review_path(@review.device.id, @review.id), local: true do |f| %>
         <table class="table table-borderless">
           <tr>
             <th>参考画像</th>
