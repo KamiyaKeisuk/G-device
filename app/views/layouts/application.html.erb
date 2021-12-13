@@ -14,6 +14,9 @@
       <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
           <a class="navbar-brand" href="/admin"><%= image_tag("G-device_logo.png", size: '60x60') %></a>
+          <button class="navbar-toggler"type="button" data-toggle="collapse"data-target="#navbarSupportedContent"aria-controls="navbarSupportedContent"aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
               <% if customer_signed_in? %>
@@ -21,7 +24,7 @@
                 <li class="nav-item ml-4"><%= link_to "Devices",devices_path,class:"nav-link text-white" %></li>
                 <%# マウスホバーでカテゴリーの一覧が表示され、カテゴリーを選択すると対象のデバイスのみが表示される%>
                 <li class="nav-item ml-4 dropdown active">
-                  <a href="#" class="dropdown-toggle nav-link text-white">Category <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Category <span class="caret"></span></a>
                   <ul class="dropdown-menu mt-0">
                     <% Category.all.each do |category| %>
                       <li>
@@ -34,7 +37,7 @@
                 </li>
                 <%# マウスホバーでメーカーの一覧が表示され、メーカーを選択すると対象のデバイスのみが表示される%>
                 <li class="nav-item ml-4 dropdown active">
-                  <a href="#" class="dropdown-toggle nav-link text-white">Maker <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Maker <span class="caret"></span></a>
                   <ul class="dropdown-menu mt-0">
                     <% Maker.all.each do |maker| %>
                       <li>
