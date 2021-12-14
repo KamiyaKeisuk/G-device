@@ -1,0 +1,30 @@
+<div class="container">
+  <div class= "row mt-3 ml-3">
+    <h3>お問い合わせ内容</h3>
+  </div>
+  <div class="d-flex flex-row">
+    <div>
+      <table class="table table-borderless">
+        <tr>
+          <th>ユーザー名</th>
+          <td><%= @contact.name %></td>
+        </tr>
+        <tr>
+          <th>返信先メールアドレス</th>
+          <td><%= @contact.email %></td>
+        </tr>
+        <tr>
+          <th>件名</th>
+          <td><%= @contact.title %></td>
+        </tr>
+        <tr>
+          <th>レビュー</th>
+          <td class="text-wrap" style="width: 30rem;"><%= @contact.message %></td>
+        </tr>
+        <tr>
+          <th><%= link_to "お問い合わせをを削除する", admin_contact_path(@contact), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-danger motion" %></th>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

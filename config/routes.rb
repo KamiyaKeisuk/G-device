@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     end
     resources :categories, except: [:new, :show, :destroy]
     resources :makers, except: [:new, :show, :destroy]
-    resources :contacts, only: [:show]
+    resources :contacts, only: [:show, :destroy]
 
     get "/device_search", to: "admin/searches#device_search"
     get "/category_search", to: "admin/searches#category_search"

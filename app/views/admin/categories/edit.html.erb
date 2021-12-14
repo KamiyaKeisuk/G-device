@@ -1,16 +1,14 @@
-<main class="mb-auto mt-5">
-  <div class="container">
-    <div class="row ge-edit">
-      <div class="h5 my-3 text-center theme col-2 offset-md-1">カテゴリー編集</div>
-    </div>
-    <div class="row">
-        <%= form_with model: @category, url: admin_category_path, local:true do |f| %>
-          <div class="form-group form">
-            <div style="margin-right:50px">カテゴリー名</div>
-            <div style="margin-right:50px"><%= f.text_field :name %></div>
-          </div>
-          <%= f.submit "変更を保存", class: "btn btn-success" %>
-        <% end %>
-    </div>
+<div class="container">
+  <div class="row ge-edit">
+    <div class="h5 my-3 text-center theme col-2 offset-md-1">カテゴリー編集</div>
   </div>
-</main>
+  <div class="row">
+      <%= form_with model: @category, url: admin_category_path, local:true do |f| %>
+        <div class="form-group form">
+          <div style="margin-right:50px">カテゴリー名</div>
+          <div style="margin-right:50px"><%= f.text_field :name %></div>
+        </div>
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      <% end %>
+  </div>
+</div>

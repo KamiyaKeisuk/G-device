@@ -1,28 +1,26 @@
-<main class="mb-auto mt-5">
-  <div class="container">
-    <div class="row">
-      <div class="col m-3">
-        <h3>カテゴリー一覧・追加</h3>
-        <div class="my-5">
-          <%= form_with model: @category, url: admin_categories_path, local:true do |f| %>
-            <%= f.label:"カテゴリー名" %>
-            <%= f.text_field :name, placeholder: "カテゴリー名" %>
-            <%= f.submit "新規登録", class: "btn btn-success motion ml-5" %>
-          <% end %>
-        </div>
-        <table class="table table-hover w-50">
-          <thead class="table-color">
-            <th>カテゴリー</th>
-            <th></th>
-          </thead>
-          <% @categories.each do |category| %>
-          <tr>
-            <td><%= category.name %></td>
-            <td><%= link_to "編集する", edit_admin_category_path(category.id), class: "btn btn-success motion ml-5" %></td>
-          </tr>
-          <% end %>
-        </table>
+<div class="container">
+  <div class="row">
+    <div class="col m-3">
+      <h3>カテゴリー一覧・追加</h3>
+      <div class="my-5">
+        <%= form_with model: @category, url: admin_categories_path, local:true do |f| %>
+          <%= f.label:"カテゴリー名" %>
+          <%= f.text_field :name, placeholder: "カテゴリー名" %>
+          <%= f.submit "新規登録", class: "btn btn-success motion ml-5" %>
+        <% end %>
       </div>
+      <table class="table table-hover w-50">
+        <thead class="table-color">
+          <th>カテゴリー</th>
+          <th></th>
+        </thead>
+        <% @categories.each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= link_to "編集する", edit_admin_category_path(category.id), class: "btn btn-success motion ml-5" %></td>
+        </tr>
+        <% end %>
+      </table>
     </div>
   </div>
-</main>
+</div>
