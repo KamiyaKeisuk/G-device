@@ -20,16 +20,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-4"><%= link_to "My page",customers_mypage_path,class:"nav-link text-white" %></li>
                 <li class="nav-item ml-4"><%= link_to "Devices",devices_path,class:"nav-link text-white" %></li>
                 <%# ドロップダウンでカテゴリーの一覧が表示され、カテゴリーを選択すると対象のデバイスのみが表示される%>
                 <li class="nav-item ml-4 dropdown active">
-                  <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Category <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Category<span class="caret"></span></a>
                   <ul class="dropdown-menu mt-0">
                     <% Category.all.each do |category| %>
                       <li>
                         <a href="#">
-                          <%= link_to category.name, devices_path(category_id: category.id), class: "text-dark" %>
+                          <%= link_to category.name, devices_path(category_id: category.id), class: "dropdown-item text-dark" %>
                         </a>
                       </li>
                     <% end %>
@@ -37,17 +36,18 @@
                 </li>
                 <%# ドロップダウンでメーカーの一覧が表示され、メーカーを選択すると対象のデバイスのみが表示される%>
                 <li class="nav-item ml-4 dropdown active">
-                  <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Maker <span class="caret"></span></a>
+                  <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Maker<span class="caret"></span></a>
                   <ul class="dropdown-menu mt-0">
                     <% Maker.all.each do |maker| %>
                       <li>
                         <a href="#">
-                          <%= link_to maker.name, devices_path(maker_id: maker.id), class: "text-dark" %>
+                          <%= link_to maker.name, devices_path(maker_id: maker.id), class: "dropdown-item text-dark" %>
                         </a>
                       </li>
                     <% end %>
                   </ul>
                 </li>
+                <li class="nav-item ml-4"><%= link_to "My page",customers_mypage_path,class:"nav-link text-white" %></li>
                 <li class="nav-item ml-4"><%= link_to "Log out",destroy_customer_session_path,method: :delete,class:"nav-link text-white" %></li>
               </ul>
             </div>
@@ -59,8 +59,38 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item ml-4"><%= link_to "Devices",admin_devices_path,class:"nav-link text-white" %></li>
-                <li class="nav-item ml-4"><%= link_to "Category",admin_categories_path,class:"nav-link text-white" %></li>
-                <li class="nav-item ml-4"><%= link_to "Makers",admin_makers_path,class:"nav-link text-white" %></li>
+                <%# ドロップダウンでカテゴリーの一覧が表示され、カテゴリーを選択すると対象のデバイスのみが表示される%>
+                <li class="nav-item ml-4 dropdown active">
+                  <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Category<span class="caret"></span></a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><%= link_to "登録カテゴリー一覧",admin_categories_path,class:"dropdown-item text-dark" %></li>
+                    <div class="dropdown-divider"></div>
+                    <div class="ml-4 text-dark">対象デバイス一覧</div>
+                    <% Category.all.each do |category| %>
+                      <li>
+                        <a href="#">
+                          <%= link_to category.name, admin_devices_path(category_id: category.id), class: "dropdown-item text-dark" %>
+                        </a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
+                <%# ドロップダウンでメーカーの一覧が表示され、メーカーを選択すると対象のデバイスのみが表示される%>
+                <li class="nav-item ml-4 dropdown active">
+                  <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Maker<span class="caret"></span></a>
+                  <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><%= link_to "登録メーカー一覧",admin_categories_path,class:"dropdown-item text-dark" %></li>
+                    <div class="dropdown-divider"></div>
+                    <div class="ml-4 text-dark">対象デバイス一覧</div>
+                    <% Maker.all.each do |maker| %>
+                      <li>
+                        <a href="#">
+                          <%= link_to maker.name, admin_devices_path(maker_id: maker.id), class: "dropdown-item text-dark" %>
+                        </a>
+                      </li>
+                    <% end %>
+                  </ul>
+                </li>
                 <li class="nav-item ml-4"><%= link_to "Customers",admin_customers_path,class:"nav-link text-white" %></li>
                 <li class="nav-item ml-4"><%= link_to "Log out",destroy_admin_session_path,method: :delete,class:"nav-link text-white" %></li>
               </ul>
@@ -86,7 +116,7 @@
     </main>
     <footer class="fixed-bottom py-1">
       <div class="container text-center text-white">
-        <p>© Copyright 2021 G-device All rights reserved. <%= link_to "お問い合わせはこちら", new_contact_path %></p>
+        <p>© Copyright 2021 G-device All rights reserved. <% if customer_signed_in? %><%= link_to "お問い合わせはこちら", new_contact_path %><% end %></p>
       </div>
     </footer>
   </body>
