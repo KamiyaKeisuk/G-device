@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col m-3">
+      <h3>マイページ</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="offset-md-1 col-md-5">
+      <table class="table table-borderless">
+        <tr>
+          <th>ユーザー名</th>
+          <td><%= @customer.name %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <th>ユーザーステータス</th>
+          <td>
+            <% if @customer.is_quited == false %>
+              <div class="text-success">有効</div>
+            <% else %>
+              <div class="text-secondary">退会</div>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= link_to "編集する", customers_mypage_edit_path, class: "btn btn-success motion" %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
