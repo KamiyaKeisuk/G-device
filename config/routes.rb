@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   scope module: :customer do
     root to: "homes#top"
     get "/about", to: "homes#about"
+    get "/recommend", to: "homes#recommend"
     resources :contacts, only: [:new, :create] do
       collection do
         get :complete

@@ -15,7 +15,7 @@ class Customer::ReviewCommentsController < ApplicationController
 
   def destroy
   end
-  
+
   private
     def review_comment_params
       params.require(:review_comment).permit(:comment)

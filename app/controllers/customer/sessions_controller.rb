@@ -26,6 +26,10 @@ class Customer::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  def after_sign_in_path_for(resource)
+    recommend_path
+  end
+
   protected
 
   def customer_state
