@@ -4,9 +4,6 @@
   </div>
   <div class="d-flex flex-row">
     <div>
-      <%= attachment_image_tag @review, :image, size: '400x300' %>
-    </div>
-    <div>
       <table class="ml-5 table table-borderless">
         <tr>
           <th>タイトル</th>
@@ -17,10 +14,14 @@
           <td class="text-wrap" style="width: 30rem;"><%= @review.comment %></td>
         </tr>
         <tr>
-          <th><%= link_to "レビューを削除する", admin_device_review_path(@review.device.id, @review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-danger motion" %></th>
+          <th>参考画像</th>
+          <td><%= attachment_image_tag @review, :image, size: '400x300' %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td><%= link_to "レビューを削除する", admin_device_review_path(@review.device.id, @review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-danger motion" %></td>
         </tr>
       </table>
     </div>
   </div>
 </div>
-

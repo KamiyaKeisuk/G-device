@@ -4,22 +4,58 @@
   </div>
   <div class="d-flex flex-row">
     <div>
-      <%= attachment_image_tag @review, :image, size: '400x300' %>
-    </div>
-    <div>
       <table class="ml-5 table table-borderless">
         <tr>
           <th>タイトル</th>
           <td><%= @review.title %></td>
+        </tr>
         <tr>
           <th>レビュー</th>
           <td class="text-wrap" style="width: 30rem;"><%= @review.comment %></td>
         </tr>
+        <tr>
+          <th>参考画像</th>
+          <td><%= attachment_image_tag @review, :image, size: '400x300' %></td>
+        </tr>
         <% if @review.customer == current_customer %>
         <tr>
-          <th><%= link_to "編集する", edit_device_review_path(@review.device.id, @review.id), class: "btn btn-success motion" %></th>
-          <td><%= link_to "レビューを削除する", device_review_path(@review.device.id, @review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-danger motion" %></td>
+          <th></th>
+          <td>
+            <%= link_to "編集する", edit_device_review_path(@review.device.id, @review.id), class: "btn btn-success motion" %>
+            <%= link_to "レビューを削除する", device_review_path(@review.device.id, @review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-danger motion" %>
+          </td>
         </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="col-12 clearfix mt-3 ml-3">
+    <div class= "float-left">
+      <h3>コメント一覧</h3>
+    </div>
+    <div class="mx-auto" style="width: 200px;">
+      <%= form_with model: @review_comment, url: device_review_review_comments_path(@review.device.id, @review.id), local: true do |f| %>
+        <%= f.text_area :comment %><br>
+        <%= f.submit "投稿", class: "btn btn-success motion" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="d-flex flex-row">
+    <div>
+      <table class="ml-5 table table-borderless">
+        <% @review.review_comments.each do |review_comment| %>
+          <tr>
+            <th>コメント</th>
+            <td class="text-wrap" style="width: 30rem;"><%= review_comment.comment %></td>
+          </tr>
+          <% if review_comment.customer == current_customer %>
+          <tr>
+            <th></th>
+            <td><%= link_to "コメントを削除する", device_review_path(@review.device.id, @review.id), method: :delete, "data-confirm" => "本当に消しますか?", class: "btn btn-danger motion" %></td>
+          </tr>
+          <% end %>
         <% end %>
       </table>
     </div>

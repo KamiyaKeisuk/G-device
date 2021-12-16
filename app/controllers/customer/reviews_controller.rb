@@ -8,6 +8,7 @@ class Customer::ReviewsController < ApplicationController
   def show
     @device = Device.find(params[:device_id])
     @review = Review.find(params[:id])
+    @review_comment = ReviewComment.new
   end
 
   def create

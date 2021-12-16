@@ -6,6 +6,10 @@ class Review < ApplicationRecord
   belongs_to :customer
   belongs_to :device
 
+  def review_liked_by?(customer)
+		review_likes.where(customer_id: customer.id).exists?
+	end
+
   validates :title, presence: true
   validates :comment, presence: true
   validates :rate, numericality: {

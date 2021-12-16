@@ -2,7 +2,7 @@
   <div class="d-flex flex-row">
     <%= attachment_image_tag @device, :image, size: '400x300' %>
     <div class="ml-5 mt-3">
-      <h3><strong><%= @device.name %></strong></h3>
+      <h3 class="mt-3 text-wrap" style="width: 30rem;"><strong><%= @device.name %></strong></h3>
       <div class="mt-3 text-wrap" style="width: 30rem;">
         <%= @device.description %><br>
       </div>
@@ -61,7 +61,13 @@
                 });
               </script>
             </td>
-            <td></td>
+            <td>
+              <% if review.review_liked_by?(current_customer) %>
+                <%= link_to review.review_likes.count, device_review_review_like_path(review.device.id, review.id), method: :delete, class: "fas fa-heart", style: "color:red;" %>
+              <% else %>
+                <%= link_to review.review_likes.count, device_review_review_likes_path(review.device.id, review.id), method: :post, class: "fas fa-heart" %>
+              <% end %>
+            </td>
             <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
           </tr>
         <% end %>
