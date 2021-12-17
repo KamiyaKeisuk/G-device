@@ -28,8 +28,9 @@ class Customer::HomesController < ApplicationController
       #review_recommend = device_recommendの中で@customerがレビューしていないdeviceの最新4つ
       @review_recommend = device_recommend.where.not(id: x).last(4)
     else
-      #@customerがレビューしていない場合deviceをランダムに4つ
+      #本番環境だと"rand()"でないとエラーが出るため、この記述で本番環境とそうでないときを判断して合った記述をあてはめている
       rand = Rails.env.production? ? "rand()" : "RANDOM()"
+      #@customerがレビューしていない場合deviceをランダムに4つ
       @review_recommend = Device.order(rand).limit(4)
     end
   end
