@@ -29,7 +29,8 @@ class Customer::HomesController < ApplicationController
       @review_recommend = device_recommend.where.not(id: x).last(4)
     else
       #@customerがレビューしていない場合deviceをランダムに4つ
-      @review_recommend = Device.order("RANDOM()").limit(4)
+      rand = Rails.env.production? ? "rand()" : "RANDOM()"
+      @review_recommend = Device.order(rand).limit(4)
     end
   end
 end
