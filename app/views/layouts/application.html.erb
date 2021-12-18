@@ -13,6 +13,7 @@
     <header class="sticky-top">
       <nav class="navbar navbar-expand-lg navbar-light shadow-sm">
         <div class="container">
+          <%# 会員ログイン時のヘッダー%>
           <% if customer_signed_in? %>
             <a class="navbar-brand" href="/recommend"><%= image_tag("G-device_logo1.png", size: '200x43') %></a>
             <button class="navbar-toggler"type="button" data-toggle="collapse"data-target="#navbarSupportedContent"aria-controls="navbarSupportedContent"aria-expanded="false" aria-label="Toggle navigation">
@@ -20,9 +21,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-4"><%= link_to "Devices",devices_path,class:"nav-link text-white" %></li>
+                <li class="ml-2"><%= link_to "Devices", devices_path, class: "nav-link text-white" %></li>
                 <%# ドロップダウンでカテゴリーの一覧が表示され、カテゴリーを選択すると対象のデバイスのみが表示される%>
-                <li class="nav-item ml-4 dropdown active">
+                <li class="nav-item ml-2 dropdown active">
                   <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Category<span class="caret"></span></a>
                   <ul class="dropdown-menu mt-0">
                     <% Category.all.each do |category| %>
@@ -35,7 +36,7 @@
                   </ul>
                 </li>
                 <%# ドロップダウンでメーカーの一覧が表示され、メーカーを選択すると対象のデバイスのみが表示される%>
-                <li class="nav-item ml-4 dropdown active">
+                <li class="ml-2 dropdown active">
                   <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Maker<span class="caret"></span></a>
                   <ul class="dropdown-menu mt-0">
                     <% Maker.all.each do |maker| %>
@@ -47,10 +48,17 @@
                     <% end %>
                   </ul>
                 </li>
-                <li class="nav-item ml-4"><%= link_to "My page",customers_mypage_path,class:"nav-link text-white" %></li>
-                <li class="nav-item ml-4"><%= link_to "Log out",destroy_customer_session_path,method: :delete,class:"nav-link text-white" %></li>
+                <li class="ml-2"><%= link_to "My page", customers_mypage_path, class: "nav-link text-white" %></li>
+                <li class="ml-2"><%= link_to "Log out", destroy_customer_session_path, method: :delete, class: "nav-link text-white" %></li>
+                <li class="d-flex align-items-center ml-2">
+                  <%= search_form_for Device.ransack(params[:q]), url: search_path do |f| %>
+                    <%= f.text_field :name_cont, placeholder: "DeviceName", class: "mt-1" %>
+                    <%= f.submit 'search', class: "btn btn-dark btn-sm motion mb-1" %>
+                  <% end %>
+                </li>
               </ul>
             </div>
+          <%# 管理者ログイン時のヘッダー%>
           <% elsif admin_signed_in? %>
             <a class="navbar-brand" href="/admin"><%= image_tag("G-device_logo1.png", size: '200x43') %></a>
             <button class="navbar-toggler"type="button" data-toggle="collapse"data-target="#navbarSupportedContent"aria-controls="navbarSupportedContent"aria-expanded="false" aria-label="Toggle navigation">
@@ -58,12 +66,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-4"><%= link_to "Devices",admin_devices_path,class:"nav-link text-white" %></li>
+                <li class="ml-2"><%= link_to "Devices", admin_devices_path, class: "nav-link text-white" %></li>
                 <%# ドロップダウンでカテゴリーの一覧が表示され、カテゴリーを選択すると対象のデバイスのみが表示される%>
-                <li class="nav-item ml-4 dropdown active">
+                <li class="ml-2 dropdown active">
                   <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Category<span class="caret"></span></a>
-                  <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><%= link_to "登録カテゴリー一覧",admin_categories_path,class:"dropdown-item text-dark" %></li>
+                  <ul class="dropdown-menu mt-0">
+                    <li><%= link_to "登録カテゴリー一覧", admin_categories_path, class: "dropdown-item text-dark" %></li>
                     <div class="dropdown-divider"></div>
                     <div class="ml-4 text-dark">対象デバイス一覧</div>
                     <% Category.all.each do |category| %>
@@ -76,10 +84,10 @@
                   </ul>
                 </li>
                 <%# ドロップダウンでメーカーの一覧が表示され、メーカーを選択すると対象のデバイスのみが表示される%>
-                <li class="nav-item ml-4 dropdown active">
+                <li class="ml-2 dropdown active">
                   <a href="#" class="dropdown-toggle nav-link text-white" data-toggle="dropdown">Maker<span class="caret"></span></a>
-                  <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><%= link_to "登録メーカー一覧",admin_categories_path,class:"dropdown-item text-dark" %></li>
+                  <ul class="dropdown-menu mt-0">
+                    <li><%= link_to "登録メーカー一覧", admin_makers_path, class: "dropdown-item text-dark" %></li>
                     <div class="dropdown-divider"></div>
                     <div class="ml-4 text-dark">対象デバイス一覧</div>
                     <% Maker.all.each do |maker| %>
@@ -91,10 +99,17 @@
                     <% end %>
                   </ul>
                 </li>
-                <li class="nav-item ml-4"><%= link_to "Customers",admin_customers_path,class:"nav-link text-white" %></li>
-                <li class="nav-item ml-4"><%= link_to "Log out",destroy_admin_session_path,method: :delete,class:"nav-link text-white" %></li>
+                <li class="ml-2"><%= link_to "Customers", admin_customers_path, class: "nav-link text-white" %></li>
+                <li class="ml-2"><%= link_to "Log out", destroy_admin_session_path, method: :delete, class: "nav-link text-white" %></li>
+                <li class="d-flex align-items-center ml-2">
+                  <%= search_form_for Device.ransack(params[:q]), url: admin_search_path do |f| %>
+                    <%= f.text_field :name_cont, placeholder: "DeviceName", class: "mt-1" %>
+                    <%= f.submit 'search', class: "btn btn-dark btn-sm motion mb-1" %>
+                  <% end %>
+                </li>
               </ul>
             </div>
+          <%# どちらにもログインしていない時のヘッダー%>
           <% else %>
             <a class="navbar-brand" href="/"><%= image_tag("G-device_logo1.png", size: '200x43') %></a>
             <button class="navbar-toggler"type="button" data-toggle="collapse"data-target="#navbarSupportedContent"aria-controls="navbarSupportedContent"aria-expanded="false" aria-label="Toggle navigation">
@@ -102,9 +117,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item ml-4"><%= link_to "About",about_path,class:"nav-link text-white" %></li>
-                <li class="nav-item ml-4"><%= link_to "Sign up",new_customer_registration_path,class:"nav-link text-white" %></li>
-                <li class="nav-item ml-4"><%= link_to "Log in",new_customer_session_path,class:"nav-link text-white" %></li>
+                <li class="ml-4"><%= link_to "About", about_path, class: "nav-link text-white" %></li>
+                <li class="ml-4"><%= link_to "Sign up", new_customer_registration_path, class: "nav-link text-white" %></li>
+                <li class="ml-4"><%= link_to "Log in", new_customer_session_path, class: "nav-link text-white" %></li>
               </ul>
             </div>
           <% end %>
@@ -130,7 +145,8 @@
     <% end %>
     <footer class="fixed-bottom">
       <div class="container mt-2 text-center text-white">
-        <p>© Copyright 2021 G-device All rights reserved. <% if customer_signed_in? %><%= link_to "お問い合わせはこちら", new_contact_path %><% end %></p>
+        <%# お問い合わせリンクは会員ログイン時のみ表示%>
+        <p>© Copyright 2021 G-device All rights reserved. <% if customer_signed_in? %><%= link_to "お問い合わせはこちら", new_contact_path, class: "text-info" %><% end %></p>
       </div>
     </footer>
   </body>

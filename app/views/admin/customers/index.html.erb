@@ -16,7 +16,7 @@
         <% @customers.each do |customer| %>
           <tr>
             <td><%= customer.id %></td>
-            <td><%= link_to customer.name, admin_customer_path(customer), class: "link" %></td>
+            <td><%= link_to customer.name, admin_customer_path(customer), class: "text-info" %></td>
             <td><%= customer.email %></td>
             <td>
               <% if customer.is_quited == false %>
@@ -31,6 +31,6 @@
     </table>
   </div>
 </div>
-<div class="mx-auto" style="width: 200px;">
+<div class="d-flex justify-content-around">
   <%= paginate @customers %>
 </div>

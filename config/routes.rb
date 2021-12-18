@@ -16,9 +16,7 @@ Rails.application.routes.draw do
     resources :makers, except: [:new, :show, :destroy]
     resources :contacts, only: [:show, :destroy]
 
-    get "/device_search", to: "admin/searches#device_search"
-    get "/category_search", to: "admin/searches#category_search"
-    get "/maker_search", to: "admin/searches#maker_search"
+    get "/search", to: "searches#search"
   end
 
   #会員側のルーティング
@@ -51,7 +49,7 @@ Rails.application.routes.draw do
     patch "/customers/withdraw", to: "customers#withdraw"
     put "/customers/withdraw", to: "customers#withdraw"
 
-    get "/device_search", to: "searches#device_search"
+    get "/search", to: "searches#search"
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

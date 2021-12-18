@@ -5,7 +5,7 @@
       <div class="d-flex flex-wrap justify-content-around">
         <% @devices.each do |device| %>
           <div class="card p-2 m-4">
-            <%= link_to device_path(device), class: "text-info" do %>
+            <%= link_to device_path(device), class: "link" do %>
               <%= attachment_image_tag(device, :image, size: '200x150') %><br>
               <p class="text-wrap" style="width: 10rem;">
                 <%= device.name %>
@@ -17,6 +17,6 @@
     </div>
   </div>
 </div>
-<div class="d-flex justify-content-around">
+<div class="mx-auto" style="width: 200px;">
   <%= paginate @devices %>
 </div>

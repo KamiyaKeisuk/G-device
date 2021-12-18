@@ -60,14 +60,13 @@
         <tr>
           <th scope="col">タイトル</th>
           <th scope="col">評価</th>
-          <th scope="col">いいね</th>
           <th scope="col">投稿日時</th>
         </tr>
       </thead>
       <tbody>
         <% @device.reviews.each do |review| %>
           <tr>
-            <td><%= link_to review.title, admin_device_review_path(review.device.id, review.id), class: "link" %></td>
+            <td><%= link_to review.title, admin_device_review_path(review.device.id, review.id), class: "text-info" %></td>
             <td>
               <div id="star-rate-<%= review.id %>"></div>
               <script>
@@ -80,8 +79,7 @@
                 });
               </script>
             </td>
-            <td></td>
-            <td></td>
+            <td><%= review.created_at.strftime("%Y/%m/%d") %></td>
           </tr>
         <% end %>
       </tbody>
