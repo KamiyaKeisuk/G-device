@@ -1,14 +1,16 @@
 <div class="container">
-  <div class="row ge-edit">
-    <div class="h5 my-3 text-center theme col-2 offset-md-1">メーカー編集</div>
+  <div class="row">
+    <div class="col m-3">
+    　<h3>メーカー編集</h3>
+    </div>
   </div>
   <div class="row">
+    <div style="margin-left:100px">
       <%= form_with model: @maker, url: admin_maker_path, local:true do |f| %>
-        <div class="form-group form">
-          <div style="margin-right:50px">メーカー名</div>
-          <div style="margin-right:50px"><%= f.text_field :name %></div>
-        </div>
-        <%= f.submit "変更を保存", class: "btn btn-success" %>
+        <div>メーカー名</div>
+        <div><%= f.text_field :name %></div>
+        <%= f.submit "変更を保存", class: "btn btn-success motion mt-3" %>
       <% end %>
+    </div>
   </div>
 </div>

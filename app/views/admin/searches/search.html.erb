@@ -20,7 +20,7 @@
         <% @devices.each do |device| %>
           <tr>
             <td><%= device.id %></td>
-            <td><%= link_to device.name, admin_device_path(device), class: "link" %></td>
+            <td><%= link_to device.name, admin_device_path(device), class: "text-info" %></td>
             <td><%= device.price.to_s(:delimited) %>円</td>
             <td><%= device.category.name %></td>
             <td><%= device.maker.name %></td>
@@ -33,4 +33,3 @@
 <div class="mx-auto" style="width: 200px;">
   <%= paginate @devices %>
 </div>
-

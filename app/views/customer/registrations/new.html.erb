@@ -8,7 +8,7 @@
           <%= render "customer/shared/error_messages", resource: resource %>
           <div>
             <%= f.label :name %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名", size: 30 %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名(15文字以内)", size: 30 %>
           </div>
           <div>
             <%= f.label :email %><br />

@@ -1,13 +1,15 @@
 <div class="container">
-  <div class= "row mt-3 ml-3">
-    <h3>商品詳細</h3>
+  <div class="row">
+    <div class="col m-3">
+      <h3>商品詳細</h3>
+    </div>
   </div>
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-wrap justify-content-around">
     <div>
       <%= attachment_image_tag @device, :image, size: '400x300' %>
     </div>
     <div>
-      <table class="ml-5 table table-borderless">
+      <table class="table table-borderless">
         <tr>
           <th>商品名</th>
           <td class="text-wrap" style="width: 30rem;"><%= @device.name %></td>
@@ -28,6 +30,7 @@
           <td><%= @device.price.to_s(:delimited) %>円</td>
         </tr>
         <tr>
+          <th></th>
           <td><%= link_to "編集する", edit_admin_device_path(@device), class: "btn btn-success motion" %></td>
         </tr>
       </table>
@@ -35,12 +38,15 @@
   </div>
 </div>
 <div class="container">
-  <div class= "row mt-3 ml-3">
-    <h3>レビュー一覧</h3>
+  <div class="row">
+    <div class="col m-3">
+      <h3>レビュー一覧</h3>
+    </div>
   </div>
-  <div class="d-flex flex-row mt-3">
+  <div class="d-flex justify-content-around">
     <div class="d-flex flex-column">
-      <h5>平均評価  (評価数:<%= @device.reviews.count %>)</h5>
+      <h5>平均評価</h5>
+      <div>(評価数:<%= @device.reviews.count %>)</div>
       <div class="average-review-rating" data-score=<%= @device.average_rate %>></div>
       <script>
         $('.average-review-rating').empty()
@@ -55,8 +61,8 @@
         });
       </script>
     </div>
-    <table class="ml-5 table table-inverse" style="width: 50rem;">
-      <thead class="table-color">
+    <table class="table" style="width: 50rem;">
+      <thead>
         <tr>
           <th scope="col">タイトル</th>
           <th scope="col">評価</th>

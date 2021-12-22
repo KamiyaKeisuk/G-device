@@ -1,24 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col m-3">
-      <h3>メーカー一覧・追加</h3>
-      <div class="my-5">
+      <h3>メーカー追加・一覧</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <div class="mb-3">
         <%= form_with model: @maker, url: admin_makers_path, local:true do |f| %>
           <%= f.label:"メーカー名" %>
           <%= f.text_field :name, placeholder: "メーカー名" %>
           <%= f.submit "新規登録", class: "btn btn-success motion ml-5" %>
         <% end %>
       </div>
-      <table class="table table-inverse w-50">
-        <thead class="table-color">
-          <th>メーカー</th>
-          <th></th>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>メーカー</th>
+            <th></th>
+          </tr>
         </thead>
         <% @makers.each do |maker| %>
-        <tr>
-          <td><%= maker.name %></td>
-          <td><%= link_to "編集する", edit_admin_maker_path(maker.id), class: "btn btn-success motion ml-5" %></td>
-        </tr>
+          <tr>
+            <td><%= maker.name %></td>
+            <td><%= link_to "編集する", edit_admin_maker_path(maker.id), class: "btn btn-success motion ml-5" %></td>
+          </tr>
         <% end %>
       </table>
     </div>

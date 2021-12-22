@@ -30,6 +30,7 @@ class Customer::ReviewsController < ApplicationController
   def edit
     @device = Device.find(params[:device_id])
     @review = Review.find(params[:id])
+    #レビューを作成した人以外がurlに直接打ち込んでもそのページにアクセスできない記述
     if @review.customer == current_customer
       render "edit"
     else
@@ -41,7 +42,7 @@ class Customer::ReviewsController < ApplicationController
     @device = Device.find(params[:device_id])
     @review = Review.find(params[:id])
     if @review.update(review_params)
-      redirect_to device_path(@device)
+      redirect_to device_review_path(@device)
     else
       redirect_to request.referer
     end

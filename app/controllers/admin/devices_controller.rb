@@ -2,7 +2,8 @@ class Admin::DevicesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @devices = Device.page(params[:page]).per(10)
+    #デバイス一覧を上から最新順に表示
+    @devices = Device.page(params[:page]).per(10).order(created_at: :desc)
     #選択したカテゴリーのデバイス一覧
     if params[:category_id].present?
       @category = Category.find(params[:category_id])
