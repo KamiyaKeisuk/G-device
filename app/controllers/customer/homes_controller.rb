@@ -10,7 +10,7 @@ class Customer::HomesController < ApplicationController
   def recommend
     @customer = current_customer.id
     #@customerがレビューした投稿
-    @reviews = Review.where(customer_id: @customer).order(created_at: :desc)
+    @reviews = Review.where(customer_id: @customer)
     if @reviews.exists?
       #review = @customerがレビューしているデバイスの最新1つ
       review = @reviews.last

@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         resources :review_comments, only: [:create, :destroy]
       end
     end
+    get "/customers/review", to: "reviews#index"
 
     get "/customers/mypage", to: "customers#show"
     get "/customers/mypage/edit", to: "customers#edit"
