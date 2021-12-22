@@ -13,7 +13,7 @@
         </tr>
         <tr>
           <th>レビュー</th>
-          <td class="text-wrap" style="width: 30rem;"><%= @review.comment %></td>
+          <td class="text-wrap" style="width: 30rem;"><%= safe_join(@review.comment.split("\n"),tag(:br)) %></td>
         </tr>
         <tr>
           <th>参考画像</th>
@@ -32,14 +32,14 @@
     </div>
   </div>
 </div>
-<div class="container">
+<div class="container" style="width: 65rem;">
   <div class="row">
     <div class= "col m-3">
       <h3>コメント一覧</h3>
     </div>
     <div class="col-auto ml-auto m-3">
       <%= form_with model: @review_comment, url: device_review_review_comments_path(@review.device.id, @review.id), local: true do |f| %>
-        <%= f.text_area :comment %><br>
+        <%= f.text_area :comment, size: "30x2" %><br>
         <%= f.submit "投稿", class: "btn btn-success motion" %>
       <% end %>
     </div>
@@ -50,7 +50,7 @@
         <% @review.review_comments.each do |review_comment| %>
           <tr>
             <th>コメント</th>
-            <td class="text-wrap" style="width: 30rem;"><%= review_comment.comment %></td>
+            <td class="text-wrap" style="width: 30rem;"><%= safe_join(review_comment.comment.split("\n"),tag(:br)) %></td>
           </tr>
           <% if review_comment.customer == current_customer %>
           <tr>

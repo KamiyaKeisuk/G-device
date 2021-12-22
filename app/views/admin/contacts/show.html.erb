@@ -21,7 +21,7 @@
         </tr>
         <tr>
           <th>お問い合わせ内容</th>
-          <td class="text-wrap" style="width: 30rem;"><%= @contact.message %></td>
+          <td class="text-wrap" style="width: 30rem;"><%= safe_join(@contact.message.split("\n"),tag(:br)) %></td>
         </tr>
         <tr>
           <th></th>

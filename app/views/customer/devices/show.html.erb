@@ -6,7 +6,7 @@
     <div>
       <h3 class="mt-3 text-wrap" style="width: 30rem;"><strong><%= @device.name %></strong></h3>
       <div class="mt-3 text-wrap" style="width: 30rem;">
-        <%= @device.description %><br>
+        <%= safe_join(@device.description.split("\n"),tag(:br)) %>
       </div>
       <div class="mt-3">
         <h4>参考価格: ￥<%= @device.price.to_s(:delimited) %></h4>
