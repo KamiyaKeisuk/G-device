@@ -9,28 +9,28 @@ class Customer::HomesController < ApplicationController
 
   def recommend
     @customer = current_customer.id
-    #@customerがレビューした投稿
+    # @customerがレビューした投稿
     @reviews = Review.where(customer_id: @customer)
     if @reviews.exists?
-      #review = @customerがレビューしているデバイスの最新1つ
+      # review = @customerがレビューしているデバイスの最新1つ
       review = @reviews.last
-      #device = reviewのdevice_idが含まれるdevice
+      # device = reviewのdevice_idが含まれるdevice
       device = review.device
-      #maker_recommend = deviceと同じmaker
+      # maker_recommend = deviceと同じmaker
       maker_recommend = Maker.find_by(name: device.maker.name)
-      #device_recommend = maker_recommendと同じdeviceを全て
+      # device_recommend = maker_recommendと同じdeviceを全て
       device_recommend = maker_recommend.devices
-        #レビューしたdevice全てのdevice.id
-      x = [] #xに配列を代入できるようにする
+      # レビューしたdevice全てのdevice.id
+      x = [] # xに配列を代入できるようにする
       @reviews.each do |review|
-        x << review.device_id #xにreview.device_idを全て代入して配列にする
+        x << review.device_id # xにreview.device_idを全て代入して配列にする
       end
-      #review_recommend = device_recommendの中で@customerがレビューしていないdeviceの最新4つ
+      # review_recommend = device_recommendの中で@customerがレビューしていないdeviceの最新4つ
       @review_recommend = device_recommend.where.not(id: x).last(4)
     else
-      #本番環境だと"rand()"でないとエラーが出るため、この記述で本番環境とそうでないときを判断して合った記述をあてはめている
+      # 本番環境だと"rand()"でないとエラーが出るため、この記述で本番環境とそうでないときを判断して合った記述をあてはめている
       rand = Rails.env.production? ? "rand()" : "RANDOM()"
-      #@customerがレビューしていない場合deviceをランダムに4つ
+      # @customerがレビューしていない場合deviceをランダムに4つ
       @review_recommend = Device.order(rand).limit(4)
     end
   end

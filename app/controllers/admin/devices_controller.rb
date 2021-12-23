@@ -2,15 +2,14 @@ class Admin::DevicesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    #デバイス一覧を上から最新順に表示
+    # デバイス一覧を上から最新順に表示
     @devices = Device.page(params[:page]).per(10).order(created_at: :desc)
-    #選択したカテゴリーのデバイス一覧
+    # 選択したカテゴリーのデバイス一覧
     if params[:category_id].present?
       @category = Category.find(params[:category_id])
       @devices = @category.devices.page(params[:page]).per(10)
-    #選択したメーカーのデバイス一覧
-    elsif
-      params[:maker_id].present?
+    # 選択したメーカーのデバイス一覧
+    elsif params[:maker_id].present?
       @maker = Maker.find(params[:maker_id])
       @devices = @maker.devices.page(params[:page]).per(10)
     end
@@ -51,7 +50,8 @@ class Admin::DevicesController < ApplicationController
   end
 
   private
-    def device_params
-      params.require(:device).permit(:category_id, :maker_id, :name, :description, :price, :image)
-    end
+
+  def device_params
+    params.require(:device).permit(:category_id, :maker_id, :name, :description, :price, :image)
+  end
 end

@@ -1,5 +1,5 @@
 class Device < ApplicationRecord
-  attachment:image
+  attachment :image
 
   has_many :reviews, dependent: :destroy
   belongs_to :category
@@ -10,12 +10,12 @@ class Device < ApplicationRecord
   validates :price, presence: true
   validates :image, presence: true
 
-#レビューの平均点
+  # レビューの平均点
   def average_rate
-    unless self.reviews.empty?
-      reviews.average(:rate).round(1)
-    else
+    if reviews.empty?
       0.0
+    else
+      reviews.average(:rate).round(1)
     end
   end
 end

@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-
-  #管理者側のルーティング
-  devise_for :admin, skip: [:passwords] ,controllers: {
+  # 管理者側のルーティング
+  devise_for :admin, skip: [:passwords], controllers: {
     registrations: "admin/registrations",
-    sessions: "admin/sessions"
+    sessions: "admin/sessions",
   }
 
   namespace :admin do
@@ -19,10 +18,10 @@ Rails.application.routes.draw do
     get "/search", to: "searches#search"
   end
 
-  #会員側のルーティング
-  devise_for :customers,skip: [:passwords,], controllers: {
+  # 会員側のルーティング
+  devise_for :customers, skip: [:passwords], controllers: {
     registrations: "customer/registrations",
-    sessions: 'customer/sessions'
+    sessions: 'customer/sessions',
   }
 
   scope module: :customer do

@@ -26,7 +26,8 @@ class Admin::MakersController < ApplicationController
   end
 
   private
-    def maker_params
-      params.require(:maker).permit(:name)
-    end
+
+  def maker_params
+    params.require(:maker).permit(:name)
+  end
 end

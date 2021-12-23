@@ -23,7 +23,8 @@ class Admin::CustomersController < ApplicationController
   end
 
   private
-    def customer_params
-      params.require(:customer).permit(:name, :email, :is_quited)
-    end
+
+  def customer_params
+    params.require(:customer).permit(:name, :email, :is_quited)
+  end
 end
