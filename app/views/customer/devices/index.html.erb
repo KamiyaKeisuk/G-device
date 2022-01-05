@@ -2,6 +2,12 @@
   <div class="row">
     <div class="col m-3">
       <h3>デバイス一覧</h3>
+      <div class="form-inline">
+        <%= form_with url: devices_path, method: :get, local: true do |f| %>
+          <%= f.select :keyword, {'デバイスの新着順': 'new', 'デバイスの登録順': 'old'}, { include_blank: '並び替え選択'}, class: 'form-control', required: true %>
+          <%= f.submit 'save', class: "btn btn-secondary btn-sm motion ml-2" %>
+        <% end %>
+      </div>
       <div class="d-flex flex-wrap justify-content-around">
         <% @devices.each do |device| %>
           <div class="card p-2 m-4">
