@@ -19,17 +19,12 @@ class Device < ApplicationRecord
     end
   end
 
-  # 順番並び替え
+  # 新着順、登録順に並び替え
   def self.sort(selection)
     case selection
     when 'new'
       return all.order(created_at: :desc)
     when 'old'
-      return all.order(created_at: :asc)
-    # 未完成
-    when 'likes'
-      return find(ReviewLike.group(:customer_id).order(Arel.sql('count(customer_id) desc')).pluck(:customer_id))
-    when 'dislikes'
       return all.order(created_at: :asc)
     end
   end

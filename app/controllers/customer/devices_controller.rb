@@ -20,11 +20,10 @@ class Customer::DevicesController < ApplicationController
 
   def show
     @device = Device.find(params[:id])
-    # 未完成
-    if params[:keyword].present?
-      selection = params[:keyword]
-      @device = Device.sort(selection)
-      @device = Device.find(params[:id])
-    end
+    # 未完成 並び替え機能
+    # if params[:keyword].present?
+      # selection = params[:keyword]
+      # @device.reviews = Review.sort(selection)
+    # end
   end
 end

@@ -23,12 +23,15 @@
       <%= link_to "レビューを書く", new_device_review_path(@device), class: "btn btn-success motion" %>
     </div>
   </div>
-  <div class="form-inline mb-3">
+
+  <%# 未完成 並び替え機能%>
+  <div class="form-inline ml-3 mb-3">
     <%= form_with url: device_path(@device), method: :get, local: true do |f| %>
-      <%= f.select :keyword, {'いいねの多い順': 'likes', 'いいねの少ない順': 'dislikes'}, { include_blank: '並び替え選択'}, class: 'form-control', required: true %>
+      <%= f.select :keyword, {'いいねの多い順': 'likes', 'レビューの新着順': 'new'}, { include_blank: '並び替え選択'}, class: 'form-control', required: true %>
       <%= f.submit 'save', class: "btn btn-secondary btn-sm motion ml-2" %>
     <% end %>
   </div>
+
   <div class="d-flex justify-content-around">
     <div class="d-flex flex-column">
       <h5>平均評価</h5>

@@ -51,8 +51,13 @@ class Customer::ReviewsController < ApplicationController
   def destroy
     @device = Device.find(params[:device_id])
     @review = Review.find(params[:id])
-    @review.destroy
-    redirect_to device_path(@device)
+    # レビューを作成した人以外が削除できない記述
+    if @review.customer == current_customer
+      @review.destroy
+      redirect_to device_path(@device)
+    else
+      redirect_to request.referer
+    end
   end
 
   private

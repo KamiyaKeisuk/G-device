@@ -7,6 +7,8 @@ class Customer < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :review_likes, dependent: :destroy
+  # 未完成 いいね順に伴っての記述
+  # has_many :liked_reviews, through: :review_likes, source: :review
   has_many :review_comments, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 15 }

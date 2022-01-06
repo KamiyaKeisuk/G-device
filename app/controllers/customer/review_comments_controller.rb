@@ -16,8 +16,13 @@ class Customer::ReviewCommentsController < ApplicationController
   def destroy
     @review = Review.find(params[:review_id])
     @review_comment = @review.review_comments.find(params[:id])
-    @review_comment.destroy
-    redirect_to request.referer
+    # コメントを作成した人以外が削除できない記述
+    if @review_comment.customer == current_customer
+      @review_comment.destroy
+      redirect_to request.referer
+    else
+      redirect_to request.referer
+    end
   end
 
   private
