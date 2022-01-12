@@ -60,7 +60,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @device.reviews.each do |review| %>
+        <% @reviews.each do |review| %>
           <tr>
             <td><%= link_to review.title, device_review_path(review.device.id, review.id), class: "text-info" %></td>
             <td>

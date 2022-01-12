@@ -20,10 +20,15 @@ class Customer::DevicesController < ApplicationController
 
   def show
     @device = Device.find(params[:id])
-    # 未完成 並び替え機能
-    # if params[:keyword].present?
-      # selection = params[:keyword]
-      # @device.reviews = Review.sort(selection)
-    # end
+    @reviews = @device.reviews.all
+    # いいね順、新着順 並び替え機能
+    if params[:keyword].present?
+      case params[:keyword]
+      when 'likes'
+        @reviews = @device.reviews.includes(:liked_customers).sort {|a,b| b.liked_customers.size <=> a.liked_customers.size}
+      when 'new'
+        @reviews = @device.reviews.all.order(created_at: :desc)
+      end
+    end
   end
 end
