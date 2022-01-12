@@ -40,7 +40,7 @@ http://35.73.130.11/
 https://docs.google.com/spreadsheets/d/1d4bE-NeTXjca_4mE8s1lVX3Hlyc5BdQHlM0xsyYSN_o/edit#gid=0
 
 ## 開発環境
-- OS：Linux2
+- OS：Amazon Linux2
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
