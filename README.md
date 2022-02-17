@@ -35,6 +35,7 @@ http://35.73.130.11/
 
 ## 設計書
 - [ER図](https://app.diagrams.net/#G1l1o5tH5RAJ5mErKB-tacHj52D7FkIN8c)
+- [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1GLsRzu62_sesLmrm8ZAQApQuyw50npU0/edit#gid=660801528)
 
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1d4bE-NeTXjca_4mE8s1lVX3Hlyc5BdQHlM0xsyYSN_o/edit#gid=0
